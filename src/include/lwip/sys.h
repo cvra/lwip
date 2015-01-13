@@ -140,6 +140,9 @@ err_t sys_sem_new(sys_sem_t *sem, u8_t count);
 /** Signals a semaphore
  * @param sem the semaphore to signal */
 void sys_sem_signal(sys_sem_t *sem);
+/* CHIBIOS FIX: specific variant of this call to be called from within
+   a lock.*/
+void sys_sem_signal_S(sys_sem_t *sem);
 /** Wait for a semaphore for the specified timeout
  * @param sem the semaphore to wait for
  * @param timeout timeout in milliseconds to wait (0 = wait forever)

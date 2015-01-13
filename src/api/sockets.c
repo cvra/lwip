@@ -1343,7 +1343,10 @@ again:
         scb->sem_signalled = 1;
         /* Don't call SYS_ARCH_UNPROTECT() before signaling the semaphore, as this might
            lead to the select thread taking itself off the list, invalidagin the semaphore. */
-        sys_sem_signal(&scb->sem);
+        /* CHIBIOS FIX: specific variant of this call to be called from within
+           a lock.*/
+/*        sys_sem_signal(&scb->sem);*/
+        sys_sem_signal_S(&scb->sem);
       }
     }
     /* unlock interrupts with each step */
